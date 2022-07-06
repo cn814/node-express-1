@@ -37,3 +37,20 @@ async function getUsers() {
   return [elie, matt, joel];
 }
 ```
+
+-it can be re-written as the following to keep separate network requests in separate files
+
+async getRequest(url){
+  let data = await (await (fetch(url)
+    .then(res => {
+      return res.json()
+    })
+    .catch(err => {
+      console.log('Error: ', err)
+    })
+  ))
+  return data
+}
+}
+
+export default new RequestService()
